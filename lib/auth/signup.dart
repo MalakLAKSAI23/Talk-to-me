@@ -37,9 +37,9 @@ class SignUpState extends State<SignUp> {
               children: [
                 Center(
                   child: Image.asset(
-                    "images/remlogo.png",
+                    "images/logo.png",
                     height: 100,
-                    width: 180,
+                    width: 250,
                   ),
                 ),
                 const SizedBox(

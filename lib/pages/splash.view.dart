@@ -16,16 +16,18 @@ class SplashView extends StatelessWidget {
     });
     return Scaffold(
       backgroundColor: Theme.of(context).brightness == Brightness.dark
-          ? Color(0xFF021638)
+          ? Colors.white
           : Colors.white,
       body: Center(
 
         child: Container(
-          width:160,
-          height: 160,
+          width:200,
+          height: 200,
           margin:const EdgeInsets.all(40),
           child: 
-            Image.asset("images/logo.png"),
+            Image.asset("images/logo.png",
+              height: 200,
+              width: 300,),
         ),
       ),
     );
