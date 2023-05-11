@@ -42,11 +42,11 @@ class Language extends StatelessWidget {
                   children: [
                     InkWell(
                         onTap: () {
-                          controllerlang.changeLang("ar");
+                          controllerlang.changeLang("fr");
                         // Action à effectuer lors du clic sur l'image
                         },
                         child: Image.asset(
-                              "images/maroc.png",
+                              "images/france.png",
                               height: 100,
                               width: 100,
                               fit: BoxFit.cover,
