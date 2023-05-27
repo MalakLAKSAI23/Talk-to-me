@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:talktome/auth/signup.dart';
-
-import '../widgets/constants.dart';
+import 'package:talktome/widgets/constants.dart';
+import '../widgets/input.dart';
+import '../widgets/mybutton.global.dart';
+import '../widgets/mysocial.login.dart';
 
 class Login extends StatefulWidget {
-  const Login({super.key});
+  const Login({Key? key}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return LoginState();
@@ -13,216 +15,138 @@ class Login extends StatefulWidget {
 }
 
 class LoginState extends State<Login> {
-  final _emailController = TextEditingController();
-  final _passwdController = TextEditingController();
-  final _key = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  bool isLoading = false;
 
-  void login() {
-    if (_key.currentState!.validate()) {
-      // FirebaseAuth.instance.signInUserWIthEmailAndPassword();
-    }
-  }
-
-
-  bool remember = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).brightness == Brightness.dark
-          ? Color(0xFF021638)
+       backgroundColor: Theme.of(context).brightness == Brightness.dark
+          ? const Color(0xFF021638)
           : Colors.white,
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Container(
-          margin: const EdgeInsets.only(top: 100),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Center(
-                child: Image.asset(
-                  "images/logo.png",
-                  height: 100,
-                  width: 250,
+      bottomNavigationBar: Container(
+        margin: const EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "ydha".tr,
+            ),
+            InkWell(
+              onTap: ()  => Get.off(const Register()),
+              child:Text(
+                "registre".tr,
+                style: TextStyle(
+                  color: myColor,
                 ),
               ),
-              const SizedBox(
-                height: 22,
+            ),
+          ],
+        ),
+      ),
+      body: isLoading == true
+          ?  Center(
+              child: CircularProgressIndicator(
+                color:myColor,
               ),
-              Container(
-                padding: const EdgeInsets.all(20),
-                child: Form(
-                  key: _key,
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        controller: _emailController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Ce champ est obligatoire";
-                            }
-                            return null;
-                          },
-                        decoration: const InputDecoration(
-                          prefixIcon: Icon(Icons.email),
-                          hintText: "email",
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 1,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 22,
-                      ),
-                      TextFormField(
-                        controller: _passwdController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Ce champ est obligatoire";
-                            }
-                            return null;
-                          },
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.lock),
-                          hintText: "pw".tr,
-                          border: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 1,
-                            ),
-                          ),
-                        ),
+            )
+          : Center(
+              child: SingleChildScrollView(
+                child: Container(
+                  margin: const EdgeInsets.only(
+                    left: 25,
+                    right: 25,
+                    bottom: 20,
+                  ),
+                  alignment: Alignment.center,
+                  child: Form(
+                    key: _formKey,
+                    child: Column(children: [
+                      Image.asset(
+                        "images/loginimg.png",
+                        width: 200,
+                        height: 200,
                       ),
                       const SizedBox(
                         height: 10,
                       ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: Row(
-                          children: [
-                            Expanded(
-                                flex: 2,
-                                child: Row(
-                                  children: [
-                                    Checkbox(
-                                      value: remember,
-                                      activeColor:myColor,
-                                      onChanged: (val) {
-                                        setState(() {
-                                          remember = val!;
-                                        });
-                                      },
-                                    ),
-                                    Text(
-                                      "rm".tr,
-                                    )
-                                  ],
-                                )),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: InkWell(
-                                onTap: () {},
-                                child: Text(
-                                  "mdo".tr,
-                                  style: const TextStyle(
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "loginacc".tr,
+                            style:const TextStyle(
+                                fontWeight: FontWeight.w600),
+                          )),
                       const SizedBox(
                         height: 10,
                       ),
-                      SizedBox(
-                        width: 400,
-                        height: 50,
-                        child: ElevatedButton(
-                      onPressed: login,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: myColor,
-                      ),
-                      child: Text(
-                        "login".tr,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 23,
-                        ),
-                      ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("or".tr),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                    /*  Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CircleAvatar(
-                              backgroundColor: Colors.white,
-                              child: Image.asset(
-                                "images/facebook.png",
-                                width: 100,
-                                height: 100,
-                              )),
-                          const SizedBox(
-                            width: 30,
-                          ),
-                          CircleAvatar(
-                            backgroundColor: Colors.white,
-                            child: Image.asset(
-                              "images/google.png",
-                              width: 100,
-                              height: 100,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20,
+                      //Input c'est un classe declarer dans le package widget
+                      Input(
+                        label: "Email",
+                        hint: "email@gmail.com",
+                        keyboardType: TextInputType.emailAddress,
+                        isObscure: false,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'enteremail'.tr;
+                          } else if (!RegExp(
+                                  r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                              .hasMatch(value)) {
+                            return 'entervalidemail'.tr;
+                          }
+                          return null;
+                        },
+                        prefixIcon: const Icon(Icons.email_outlined),
+                        controller: emailController,
                       ),
 
-                     */
-                      Container(
-                        margin: const EdgeInsets.all(10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("ydha".tr),
-                            InkWell(
-                              onTap: () => Get.off(const SignUp()),
-                              child: Text(
-                                "click".tr,
-                                style:  TextStyle(
-                                  color: myColor,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                      const SizedBox(
+                        height: 10,
                       ),
-                    ],
+                      //Mot de passe
+                      Input(
+                        label: "pw".tr,
+                        hint: "...........",
+                        keyboardType: TextInputType.visiblePassword,
+                        isObscure: true,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'plpass'.tr;
+                          } else if (value.length < 8) {
+                            return 'pssm'.tr;
+                          }
+                          return null;
+                        },
+                        prefixIcon: const Icon(Icons.lock_outline_rounded),
+                        controller: passwordController,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      //MyButton c'est un classe declarer dans le package widget
+                      //btn pour connexion
+                      MyButton(
+                        text: "login".tr,
+                        color:myColor,
+                        onPressed: () {
+                         
+                        },
+                        textColor: Colors.white,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.05,
+                      ),
+                      //MySocilaLogin c'est un classe declarer dans le package widget  contient trois btn (fb,twitter,google)
+                      const MySocialLogin(),
+                    ]),
                   ),
                 ),
               ),
-            ],
-          ),
-        ),
-      ),
+            ),
     );
   }
 }
+
+

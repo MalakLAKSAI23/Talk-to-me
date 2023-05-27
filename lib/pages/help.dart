@@ -11,7 +11,7 @@ class Help extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ? Color(0xFF021638)
+            ? const Color(0xFF021638)
             : Colors.white,
         drawer: const MyDrawer(),
         appBar: AppBar(

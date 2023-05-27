@@ -1,170 +1,168 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:talktome/auth/login.dart';
-import '../widgets/constants.dart';
+import 'package:talktome/widgets/constants.dart';
+import '../widgets/input.dart';
+import '../widgets/mybutton.global.dart';
+import 'Login.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+class Register extends StatefulWidget {
+  const Register({Key? key}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
-    return SignUpState();
+    return RegistreState();
   }
 }
 
-class SignUpState extends State<SignUp> {
-  final _key = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwdController = TextEditingController();
+class RegistreState extends State<Register> {
+  final _formKey = GlobalKey<FormState>();
+  bool isLoading = false;
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   final _passwdConfirmController = TextEditingController();
-  void register() {
-    if (_key.currentState!.validate()) {
-      // FirebaseAuth.instance.createUserWIthEmailAndPassword();
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).brightness == Brightness.dark
-          ? Color(0xFF021638)
-          : Colors.white,
-      body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
+       backgroundColor: Theme.of(context).brightness == Brightness.dark
+            ? const Color(0xFF021638)
+            : Colors.white,
+        bottomNavigationBar: Container(
+        margin: const EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "yha".tr,
+            ),
+            InkWell(
+              onTap: () => Get.off(const Login()),
+              child:Text(
+                "login".tr,
+                style: TextStyle(
+                  color: myColor,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      body:isLoading==true ? Center(child: CircularProgressIndicator(color:myColor,),) :Center(
+        child: SingleChildScrollView(
           child: Container(
-            margin: const EdgeInsets.only(top: 100),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Center(
-                  child: Image.asset(
-                    "images/logo.png",
-                    height: 100,
-                    width: 250,
-                  ),
+            margin: const EdgeInsets.only(
+              left: 25,
+              right: 25,
+              bottom: 20,
+            ),
+            alignment: Alignment.center,
+            child: Form(
+              key: _formKey,
+              child: Column(children: [
+                Image.asset(
+                  "images/register.png",
+                  width: 200,
+                  height: 200,
                 ),
                 const SizedBox(
-                  height: 22,
+                  height: 10,
                 ),
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  child: Form(
-                    key: _key,
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          controller: _emailController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Ce champ est obligatoire";
-                            }
-                            return null;
-                          },
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.email),
-                            hintText: "email",
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                width: 1,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 22,
-                        ),
-                        TextFormField(
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Ce champ est obligatoire";
-                            }
-                            return null;
-                          },
-                          controller: _passwdController,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.lock),
-                            hintText: "pw".tr,
-                            border: const OutlineInputBorder(
-                              borderSide: BorderSide(
-                                width: 1,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 22,
-                        ),
-                        TextFormField(
-                          validator: (value) {
-                            if (value!.isNotEmpty ) {
-                              if (_passwdController.text.trim() !=
-                                  _passwdConfirmController.text.trim()) {
-                                return "Mots de passe non indentiques";
-                              }
-                            } else {
-                              return "Ce champ est obligatoire";
-                            }
-                            return null;
-                          },
-                          controller: _passwdConfirmController,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.lock),
-                            hintText: "cpw".tr,
-                            border: const OutlineInputBorder(
-                              borderSide: BorderSide(
-                                width: 1,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          width: 400,
-                          height: 50,
-                          child: ElevatedButton(
-                            onPressed: register,
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: myColor,
-                            ),
-                            child: Text(
-                              "register".tr,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 23,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          margin: const EdgeInsets.all(10),
-                          child: Row(
-                            children: [
-                              Text("yha".tr),
-                              InkWell(
-                                onTap: () => Get.off(const Login()),
-                                child: Text(
-                                  "click".tr,
-                                  style: TextStyle(
-                                    color:myColor,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "cya".tr,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w600),
+                    )),
+                const SizedBox(
+                  height: 10,
                 ),
-              ],
+                //Input c'est un classe declarer dans le package widget
+                Input(
+                  label: "Email",
+                  hint: "email@gmail.com",
+                  keyboardType: TextInputType.emailAddress,
+                  isObscure: false,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'enteremail'.tr;
+                    } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                        .hasMatch(value)) {
+                      return 'entervalidemail'.tr;
+                    }
+                    return null;
+                  },
+                  prefixIcon: const Icon(Icons.email_outlined),
+                  controller: emailController,
+                ),
+
+                const SizedBox(
+                  height: 10,
+                ),
+                //Mot de passe
+                Input(
+                  label: "pw".tr,
+                  hint: "...........",
+                  keyboardType: TextInputType.visiblePassword,
+                  isObscure: true,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'plpass'.tr;
+                    } else if (value.length < 8) {
+                      return 'pssm'.tr;
+                    }
+                    return null;
+                  },
+                  prefixIcon: const Icon(Icons.lock_outline_rounded),
+                  controller: passwordController,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                //confirme mdp
+                Input(
+                  label: "cpw".tr,
+                  hint: "...........",
+                  keyboardType: TextInputType.visiblePassword,
+                  isObscure: true,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'cpwr'.tr;
+                    }
+                    if (value != passwordController.text) {
+                      return 'pwcp'.tr;
+                    }
+                    return null;
+                  },
+                  prefixIcon: const Icon(Icons.lock_outline_rounded),
+                  controller: _passwdConfirmController,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                //MyButton c'est un classe declarer dans le package widget
+                //btn pour connexion
+                MyButton(
+                  text: "register".tr,
+                  color: myColor,
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                    
+
+                      // Les informations d'identification sont valides
+                    } else {
+                      // Les informations d'identification ne sont pas valides
+                    }
+                  },
+                  textColor: Colors.white,
+                ),
+              ]),
             ),
-          )),
-    );
+          ),
+        ),
+      ),
+     );
   }
 }

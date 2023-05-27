@@ -12,7 +12,7 @@ class Language extends StatelessWidget {
     MyLocaleController controllerlang = Get.find();
     return Scaffold(
       backgroundColor: Theme.of(context).brightness == Brightness.dark
-          ? Color(0xFF021638)
+          ? const Color(0xFF021638)
           : Colors.white,
       drawer: const MyDrawer(),
       appBar: AppBar(
@@ -23,17 +23,14 @@ class Language extends StatelessWidget {
                   onPressed: () {
                     Scaffold.of(context).openDrawer();
                   },
-
                   icon: const Icon(Icons.menu),
                   color: const Color(0xFFCC1DB9),
                   iconSize: 30,
                 )),
       ),
       body: Container(
-         margin: const EdgeInsets.only(left: 20, right: 20, top: 50),
-         child: Column(
-         children:[
-
+        margin: const EdgeInsets.only(left: 20, right: 20, top: 50),
+        child: Column(children: [
           Row(
             children: [
               Expanded(
@@ -41,24 +38,25 @@ class Language extends StatelessWidget {
                 child: Column(
                   children: [
                     InkWell(
-                        onTap: () {
-                          controllerlang.changeLang("fr");
+                      onTap: () {
+                        controllerlang.changeLang("fr");
                         // Action à effectuer lors du clic sur l'image
-                        },
-                        child: Image.asset(
-                              "images/france.png",
-                              height: 100,
-                              width: 100,
-                              fit: BoxFit.cover,
-                            ),
-                            ),
+                      },
+                      child: Image.asset(
+                        "images/france.png",
+                        height: 100,
+                        width: 100,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                     const SizedBox(
                       height: 30,
                     ),
                     MaterialButton(
                       onPressed: () {
-                        controllerlang.changeLang("fr");
-                      },
+                        
+                       
+                 },
                       minWidth: 100,
                       child: Text("fr".tr, textAlign: TextAlign.center),
                     )
@@ -70,17 +68,17 @@ class Language extends StatelessWidget {
                 child: Column(
                   children: [
                     InkWell(
-                        onTap: () {
-                          controllerlang.changeLang("en");
+                      onTap: () {
+                        controllerlang.changeLang("en");
                         // Action à effectuer lors du clic sur l'image
-                        },
-                        child: Image.asset(
-                              "images/etats-unis.png",
-                              height: 100,
-                              width: 100,
-                              fit: BoxFit.cover,
-                            ),
-                            ),
+                      },
+                      child: Image.asset(
+                        "images/etats-unis.png",
+                        height: 100,
+                        width: 100,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                     const SizedBox(
                       height: 30,
                     ),
@@ -96,7 +94,7 @@ class Language extends StatelessWidget {
               ),
             ],
           ),
-          ]
+        ]
         ),
       ),
     );

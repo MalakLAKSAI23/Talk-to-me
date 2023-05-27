@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:talktome/pages/home_page.dart';
 
-import '../widgets/constants.dart';
 
 class SplashView extends StatelessWidget {
   const SplashView({super.key});
@@ -16,7 +15,7 @@ class SplashView extends StatelessWidget {
     });
     return Scaffold(
       backgroundColor: Theme.of(context).brightness == Brightness.dark
-          ? Colors.white
+          ? const Color(0xFF021638)
           : Colors.white,
       body: Center(
 
@@ -24,12 +23,14 @@ class SplashView extends StatelessWidget {
           width:200,
           height: 200,
           margin:const EdgeInsets.all(40),
-          child: 
-            Image.asset("images/logo.png",
-              height: 200,
-              width: 300,),
+          child: Image.asset(
+  Theme.of(context).brightness == Brightness.dark
+      ? "images/logodark.png"
+      : "images/logolight.png",
+      height: 200,
+      width: 300
         ),
       ),
-    );
+    ));
   }
 }

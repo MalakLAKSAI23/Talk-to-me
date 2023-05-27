@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:talktome/pages/languages.dart';
-
 import '../auth/Login.dart';
 import '../auth/signup.dart';
 import '../locale/locale_controller.dart';
@@ -25,7 +24,7 @@ class _MyDrawerState extends State<MyDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: Theme.of(context).brightness == Brightness.dark
-          ? Color(0xFF021638)
+          ? const Color(0xFF021638)
           : Colors.white,
       child: ListView(
         children: [
@@ -76,7 +75,7 @@ class _MyDrawerState extends State<MyDrawer> {
               ListTile(
                 title: Text("register".tr),
                 leading: const Icon(Icons.person_add),
-                onTap: () => Get.off(const SignUp()),
+                onTap: () => Get.off(const Register()),
               ),
               ListTile(
                 title: Text("login".tr),
@@ -87,7 +86,7 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
           const Divider(),
           ListTile(
-            title: Text("change Theme"),
+            title:const Text("change Theme"),
             leading: const Icon(Icons.mode_night),
             onTap: (){
               if(Get.isDarkMode){
@@ -99,31 +98,6 @@ class _MyDrawerState extends State<MyDrawer> {
             },
           ),
 
-         /* Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text("fr".tr),
-              Switch(
-                value: isEnglish,
-                activeColor: myColor,
-                activeTrackColor:myColor,
-                inactiveThumbColor: myColor,
-                inactiveTrackColor: myColor,
-                onChanged: (value) {
-                  setState(() {
-                    isEnglish = !isEnglish;
-                    if (isEnglish) {
-                      controllerlang.changeLang("en");
-                    } else {
-                      controllerlang.changeLang("fr");
-                    }
-                  });
-                },
-              ),
-              Text("en".tr),
-            ],
-          )
-          */
         ],
       ),
     );

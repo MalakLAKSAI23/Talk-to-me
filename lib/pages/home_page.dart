@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:speech_to_text/speech_to_text.dart ' as stt;
 import 'package:flutter_share/flutter_share.dart';
 import 'package:talktome/pages/flutter_plu.dart';
-import 'package:talktome/theme/theme.dart';
 import 'package:talktome/widgets/my_drawer.dart';
 import '../widgets/constants.dart';
 import '../widgets/my_icon_button.dart';
@@ -54,7 +53,7 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ? Color(0xFF021638)
+            ? const Color(0xFF021638)
             : Colors.white,
         drawer: const MyDrawer(),
         appBar: AppBar(

@@ -5,10 +5,12 @@ const Map<String, String> en = {
   'tel':'Phone Number:',
   'help':'Help',
   'speech':'Press the Button to Start speaking',
-  'pw':'password',
+  'pw':'Password',
   'cpw':'confirm password',
+  "cpwr":"Password confirmation required",
   'register':'Registre',
-  'yha':'you have an account?',
+  "pwcp":"Password does not match",
+  'yha':'You have an account?',
   'click':'Click Here',
   'login':'Login',
   'ydha':"you don't have an account?",
@@ -19,4 +21,12 @@ const Map<String, String> en = {
   'rm':'Remember Me',
   "mdo":"Forgot Password?",
   "or":"or",
+  "loginacc":"Login to your Account",
+  "enteremail":"Please enter your email address",
+  "entervalidemail":"Please enter a valid email address",
+  "plpass":"Please enter a password",
+  "pssm":"Password must be at least 8 characters",
+  "cya":"Create your account",
+
+
 };
