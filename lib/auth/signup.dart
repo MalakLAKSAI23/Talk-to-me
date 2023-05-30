@@ -79,7 +79,6 @@ class RegistreState extends State<Register> {
                 //Input c'est un classe declarer dans le package widget
                 Input(
                   label: "Email",
-                  hint: "email@gmail.com",
                   keyboardType: TextInputType.emailAddress,
                   isObscure: false,
                   validator: (value) {
@@ -101,7 +100,6 @@ class RegistreState extends State<Register> {
                 //Mot de passe
                 Input(
                   label: "pw".tr,
-                  hint: "...........",
                   keyboardType: TextInputType.visiblePassword,
                   isObscure: true,
                   validator: (value) {
@@ -124,7 +122,6 @@ class RegistreState extends State<Register> {
                 //confirme mdp
                 Input(
                   label: "cpw".tr,
-                  hint: "...........",
                   keyboardType: TextInputType.visiblePassword,
                   isObscure: true,
                   validator: (value) {

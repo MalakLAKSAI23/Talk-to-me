@@ -85,7 +85,6 @@ class LoginState extends State<Login> {
                       //Input c'est un classe declarer dans le package widget
                       Input(
                         label: "Email",
-                        hint: "email@gmail.com",
                         keyboardType: TextInputType.emailAddress,
                         isObscure: false,
                         validator: (value) {
@@ -108,7 +107,6 @@ class LoginState extends State<Login> {
                       //Mot de passe
                       Input(
                         label: "pw".tr,
-                        hint: "...........",
                         keyboardType: TextInputType.visiblePassword,
                         isObscure: true,
                         validator: (value) {
@@ -131,6 +129,14 @@ class LoginState extends State<Login> {
                         text: "login".tr,
                         color:myColor,
                         onPressed: () {
+                           if (_formKey.currentState!.validate()) {
+                            // Si le formulaire est valide, enregistrer les valeurs
+                            _formKey.currentState!.save();
+
+                            // Les informations d'identification sont valides
+                          } else {
+                            // Les informations d'identification ne sont pas valides
+                          }
                          
                         },
                         textColor: Colors.white,

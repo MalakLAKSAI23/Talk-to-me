@@ -5,6 +5,7 @@ import 'package:talktome/locale/translation.dart';
 import 'package:get/get.dart';
 import 'package:talktome/pages/splash.view.dart';
 import 'package:talktome/theme/theme.dart';
+import 'package:talktome/widgets/constants.dart';
 
 // import 'package:shared_preferences/shared_preferences.dart';
 SharedPreferences? sharepref;
@@ -21,10 +22,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     MyLocaleController controller = Get.put(MyLocaleController());
     return GetMaterialApp(
+      color:myColor,
       theme: Themes.customLightTheme,
       darkTheme: Themes.customDarkTheme,
       home: const SplashView(),
-
       translations: Translation(),
       locale: controller.initialLang,
       fallbackLocale: const Locale("en"),
